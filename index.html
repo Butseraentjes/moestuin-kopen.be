@@ -32,6 +32,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            overflow: hidden;
         }
 
         .floating-shapes {
@@ -84,12 +85,14 @@
             font-size: 4rem;
             margin-bottom: 1rem;
             animation: slideUp 1s ease-out;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
 
         .subtitle {
             font-size: 1.5rem;
             opacity: 0.8;
             animation: slideUp 1s ease-out 0.3s backwards;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
         }
 
         .cta-button {
@@ -101,12 +104,12 @@
             text-decoration: none;
             border-radius: 30px;
             font-weight: bold;
-            transition: transform 0.3s ease;
-            animation: slideUp 1s ease-out 0.6s backwards;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
         }
 
         .cta-button:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.05);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
@@ -114,6 +117,17 @@
         .products {
             padding: 5rem 2rem;
             background: #1a2438;
+            position: relative;
+        }
+
+        .products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, var(--background), transparent);
         }
 
         .products-grid {
@@ -128,27 +142,36 @@
             background: #2a3649;
             border-radius: 15px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: all 0.5s ease;
+            position: relative;
             animation: fadeIn 1s ease-out;
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .product-image {
             width: 100%;
             height: 300px;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
 
         .product-card:hover .product-image {
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .product-info {
             padding: 1.5rem;
+            background: linear-gradient(to top, #2a3649, rgba(42, 54, 73, 0.8));
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-info {
+            transform: translateY(-5px);
         }
 
         /* Contact Section Styling */
@@ -156,12 +179,15 @@
             padding: 5rem 2rem;
             background: #0d1525;
             text-align: center;
+            position: relative;
         }
 
         .contact-info {
             max-width: 800px;
             margin: 0 auto;
             animation: fadeIn 1s ease-out;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-details {
@@ -169,6 +195,10 @@
             display: grid;
             gap: 1rem;
             text-align: left;
+            background: rgba(42, 54, 73, 0.3);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
         }
 
         nav {
@@ -194,6 +224,7 @@
             text-decoration: none;
             position: relative;
             padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
         }
 
         .nav-links a::after {
@@ -205,6 +236,10 @@
             height: 2px;
             background: var(--accent);
             transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
         }
 
         .nav-links a:hover::after {
@@ -223,9 +258,11 @@
         @keyframes fadeIn {
             from {
                 opacity: 0;
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -249,11 +286,44 @@
             }
         }
 
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
+        }
+
         .section-title {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
             color: var(--accent);
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--accent);
+            margin: 1rem auto;
+            animation: width 2s ease-out;
+        }
+
+        @keyframes width {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100px;
+            }
         }
     </style>
 </head>
@@ -284,19 +354,19 @@
         <h2 class="section-title">Onze Producten</h2>
         <div class="products-grid">
             <div class="product-card">
-                <img src="/api/placeholder/650/650" alt="Moestuinbak vierkante meter" class="product-image">
+                <img src="vierkante-meter-1_650x650.webp" alt="Moestuinbak vierkante meter" class="product-image">
                 <div class="product-info">
                     <h3>Moestuinbak Vierkante Meter</h3>
                 </div>
             </div>
             <div class="product-card">
-                <img src="/api/placeholder/650/391" alt="WV Douglas vierkante meter" class="product-image">
+                <img src="WV-douglas-vierkante-meter-650-1_650x391.jpg" alt="WV Douglas vierkante meter" class="product-image">
                 <div class="product-info">
                     <h3>WV Douglas Vierkante Meter</h3>
                 </div>
             </div>
             <div class="product-card">
-                <img src="/api/placeholder/600/469" alt="Douglas minigarden op poten" class="product-image">
+                <img src="douglas-minigarden-op-poten-600-1_600x469.webp" alt="Douglas minigarden op poten" class="product-image">
                 <div class="product-info">
                     <h3>Douglas Minigarden op Poten</h3>
                 </div>
