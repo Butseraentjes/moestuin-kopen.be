@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Wood Products - Moestuinbakken</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --accent: #f59e0b;
+            --background: #0f172a;
+            --text: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.2;
+        }
+
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            right: 20%;
+            background: var(--secondary);
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            left: 30%;
+            top: 20%;
+            background: var(--accent);
+            animation-delay: 4s;
+        }
+
+        .content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            animation: slideUp 1s ease-out 0.3s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            animation: slideUp 1s ease-out 0.6s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Product Gallery Styling */
+        .products {
+            padding: 5rem 2rem;
+            background: #1a2438;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: #2a3649;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        /* Contact Section Styling */
+        .contact {
+            padding: 5rem 2rem;
+            background: #0d1525;
+            text-align: center;
+        }
+
+        .contact-info {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+            display: grid;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            animation: slideDown 1s ease-out;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Producten</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://www.e-woodproducts.be/collections/moestuinen/" target="_blank">Webshop</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="content">
+            <h1 class="title">E-Wood Products</h1>
+            <p class="subtitle">Uw specialist in kwalitatieve moestuinbakken</p>
+            <a href="https://www.e-woodproducts.be/collections/moestuinen/" target="_blank" class="cta-button">Bezoek onze webshop</a>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <h2 class="section-title">Onze Producten</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="/api/placeholder/650/650" alt="Moestuinbak vierkante meter" class="product-image">
+                <div class="product-info">
+                    <h3>Moestuinbak Vierkante Meter</h3>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="/api/placeholder/650/391" alt="WV Douglas vierkante meter" class="product-image">
+                <div class="product-info">
+                    <h3>WV Douglas Vierkante Meter</h3>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="/api/placeholder/600/469" alt="Douglas minigarden op poten" class="product-image">
+                <div class="product-info">
+                    <h3>Douglas Minigarden op Poten</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-info">
+            <div class="contact-details">
+                <p><strong>Hoofdzetel:</strong> BV E-Products Europe</p>
+                <p><strong>Adres:</strong> Patijntjestraat 107, 9000 Gent</p>
+                <p><strong>BTW nummer:</strong> BE 0500.621.156</p>
+                <p><strong>E-mail:</strong> <a href="mailto:support@e-woodproducts.com">support@e-woodproducts.com</a></p>
+                <p><strong>Bankgegevens:</strong></p>
+                <ul>
+                    <li>BIC: GEBA BE BB</li>
+                    <li>IBAN: BE 61 0016 8384 4117</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
